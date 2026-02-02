@@ -7,7 +7,7 @@
  * ✅ CONFIG (EDITAR SOLO ESTO)
  **************************************************************/
 const CONFIG = {
-  AGENCIES: [{ id: 17, name: "Ceti" }],
+  AGENCIES: [{ id: 28, name: "Ceti" }],
   BRAND_NAME: "",
 
   // 🔥 FLAG PRINCIPAL:
