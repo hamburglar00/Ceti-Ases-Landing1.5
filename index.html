@@ -32,11 +32,11 @@
 
     window.fbq=window.fbq||function(){console.warn("Meta Pixel no inicializado")};
 
-    fbq("init","TU_PIXEL_ID",{external_id:externalId,em:userEmail||void 0,ph:userPhone||void 0,country:"AR"});
+    fbq("init","880464554785896",{external_id:externalId,em:userEmail||void 0,ph:userPhone||void 0,country:"AR"});
     fbq("track","PageView");
   </script>
   <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=TU_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+    src="https://www.facebook.com/tr?id=880464554785896&ev=PageView&noscript=1"/></noscript>
 </head>
 
 <body>
@@ -105,7 +105,7 @@ const LANDING_CONFIG = {
   SERVICE_BASE: "/api/get-random-phone",
 
   // ✅ Soporte (Plan D) controlado por flag (para test)
-  SUPPORT_FALLBACK_ENABLED: true, // <- cuando confirmes, pasalo a false
+  SUPPORT_FALLBACK_ENABLED: false, // <- cuando confirmes, pasalo a false
   FALLBACK: [{ number: "", name: "Soporte", weight: 1 }],
 
   CACHE: {
@@ -115,7 +115,7 @@ const LANDING_CONFIG = {
 
   PROMO: {
     ENABLED: true,
-    LANDING_TAG: ""
+    LANDING_TAG: "CT1"
   },
 
   UI: {
@@ -310,12 +310,6 @@ function buildMensaje(botName, promo_code){
   return promo_code ? `${base} ${promo_code}` : base;
 }
 
-/**
- * ✅ PRIORIDAD #1: conseguir número
- * ✅ PRIORIDAD #2: pixel contact
- * ✅ PRIORIDAD #3: GEO FRONT + POST a tu API (con tiempo controlado)
- * ✅ PRIORIDAD #4: redirigir a WhatsApp
- */
 async function contactarWhatsApp({ source="main_button", customText=null } = {}){
   if (window.__waInFlight) return;
   window.__waInFlight = true;
