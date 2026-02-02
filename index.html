@@ -450,7 +450,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   function toggleBubble(){ if(bubble){ bubble.classList.toggle("is-open"); openedOnce = true; } }
 
   window.addEventListener("load", ()=>{
-    setTimeout(()=>{ if(!openedOnce) openBubble(); }, 3500);
+    setTimeout(()=>{ if(!openedOnce) openBubble(); }, 7000);
   });
 
   if (floatBtn) floatBtn.addEventListener("click", toggleBubble);
