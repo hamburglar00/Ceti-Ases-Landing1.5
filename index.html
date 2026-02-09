@@ -293,20 +293,20 @@ async function detectarGeo(){
   }
 }
 
-function buildMensaje(botName, promo_code){
   const variantes = [
-    n => `Hola ${n}! Vi este anuncio, me pasás info?`,
-    n => `Hola ${n}! Vi el anuncio, podrías darme más info?`,
-    n => `Buenas ${n}! Me contás un poco más del anuncio?`,
-    n => `Hola ${n}! Quisiera saber más sobre lo que ofrecen.`,
-    n => `Buenas ${n}! Me das más detalles por favor?`,
-    n => `Hola ${n}! Estoy interesado, me contás cómo funciona?`,
-    n => `Hola ${n}! Vi tu publicación, podrías ampliarme la info?`,
-    n => `Holaaa ${n}! Me llamó la atención el anuncio, me contás más?`,
-    n => `Hola ${n}! Vi tu publicidad, cómo es para registrarse?`,
-    n => `Buenas ${n}! Me das información sobre cómo empezar?`
+    () => `Hola! Vi este anuncio, me pasás info?`,
+    () => `Hola! Vi el anuncio, podrías darme más info?`,
+    () => `Buenas! Me contás un poco más del anuncio?`,
+    () => `Hola! Quisiera saber más sobre lo que ofrecen.`,
+    () => `Buenas! Me das más detalles por favor?`,
+    () => `Hola! Estoy interesado, me contás cómo funciona?`,
+    () => `Hola! Vi tu publicación, podrías ampliarme la info?`,
+    () => `Holaaa! Me llamó la atención el anuncio, me contás más?`,
+    () => `Hola! Vi tu publicidad, cómo es para registrarse?`,
+    () => `Buenas! Me das información sobre cómo empezar?`
   ];
-  const base = variantes[Math.floor(Math.random()*variantes.length)](botName || "Soporte");
+
+  const base = variantes[Math.floor(Math.random()*variantes.length)]();
   return promo_code ? `${base} ${promo_code}` : base;
 }
 
