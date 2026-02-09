@@ -293,6 +293,7 @@ async function detectarGeo(){
   }
 }
 
+function buildMensaje(botName, promo_code){
   const variantes = [
     () => `Hola! Vi este anuncio, me pasás info?`,
     () => `Hola! Vi el anuncio, podrías darme más info?`,
@@ -309,6 +310,7 @@ async function detectarGeo(){
   const base = variantes[Math.floor(Math.random()*variantes.length)]();
   return promo_code ? `${base} ${promo_code}` : base;
 }
+
 
 async function contactarWhatsApp({ source="main_button", customText=null } = {}){
   if (window.__waInFlight) return;
