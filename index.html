@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
   <link rel="dns-prefetch" href="//connect.facebook.net">
   <link rel="preload" as="image" href="imagenes/fondo.avif" type="image/avif" fetchpriority="high">
-  <link rel="preload" as="image" href="imagenes/fondo.png">
+  <!-- ✅ quitado: <link rel="preload" as="image" href="imagenes/fondo.png"> -->
 
   <!-- Meta Pixel Code (con coincidencias avanzadas) -->
   <script>
@@ -59,28 +59,7 @@
     </div>
   </div>
 
-  <!-- Floating WhatsApp + Burbuja -->
-  <div id="wa-float" class="wa-float" aria-hidden="false">
-    <button id="wa-float-btn" class="wa-float__btn" aria-label="Abrir WhatsApp">
-      <img src="imagenes/whatsapp.png" alt="whatsapp" class="wa-float__icon" />
-    </button>
-
-    <div id="wa-bubble" class="wa-bubble" role="dialog" aria-label="Chat WhatsApp">
-      <div class="wa-bubble__header">
-        <div class="wa-bubble__title">WhatsApp</div>
-        <button id="wa-bubble-close" class="wa-bubble__close" aria-label="Cerrar">✕</button>
-      </div>
-
-      <div class="wa-bubble__body">
-        <div class="wa-msg wa-msg--bot">¡Bienvenido!👋 Enviale un mensaje a nuestra cajera👇</div>
-      </div>
-
-      <div class="wa-bubble__footer">
-        <input id="wa-input" class="wa-input" type="text" value="Hola! Quiero info" />
-        <button id="wa-send" class="wa-send">Enviar</button>
-      </div>
-    </div>
-  </div>
+  <!-- ✅ quitado: Floating WhatsApp + Burbuja (wa-float completo) -->
 
   <!-- Overlay (se muestra y auto-oculta) -->
   <div id="wa-redirect-overlay" class="wa-redirect-overlay" hidden>
@@ -324,7 +303,7 @@ async function contactarWhatsApp({ source="main_button", customText=null } = {})
 }
 
 /************************************************************
- * ✅ UI wiring
+ * ✅ UI wiring (solo botón principal)
  ************************************************************/
 document.addEventListener("DOMContentLoaded",()=>{
   // prewarm apenas carga
@@ -337,36 +316,6 @@ document.addEventListener("DOMContentLoaded",()=>{
       contactarWhatsApp({ source:"main_button" });
     });
   }
-
-  const floatBtn=document.getElementById("wa-float-btn");
-  const bubble=document.getElementById("wa-bubble");
-  const closeBtn=document.getElementById("wa-bubble-close");
-  const sendBtn=document.getElementById("wa-send");
-  const input=document.getElementById("wa-input");
-
-  if (input) input.value = LANDING_CONFIG.UI.DEFAULT_INPUT_TEXT || "Hola! Quiero info";
-
-  let openedOnce=false;
-  function openBubble(){ if(bubble){ bubble.classList.add("is-open"); openedOnce=true; } }
-  function closeBubble(){ if(bubble){ bubble.classList.remove("is-open"); } }
-  function toggleBubble(){ if(bubble){ bubble.classList.toggle("is-open"); openedOnce=true; } }
-
-  window.addEventListener("load", ()=>{
-    setTimeout(()=>{ if(!openedOnce) openBubble(); },
-      Number(LANDING_CONFIG.UI.AUTO_OPEN_BUBBLE_MS || 3500)
-    );
-  });
-
-  if(floatBtn) floatBtn.addEventListener("click", toggleBubble);
-  if(closeBtn) closeBtn.addEventListener("click", closeBubble);
-
-  function sendFromBubble(){
-    const text=(input?.value || LANDING_CONFIG.UI.DEFAULT_INPUT_TEXT || "Hola! Quiero info").trim();
-    contactarWhatsApp({ source:"floating", customText:text });
-    closeBubble();
-  }
-  if(sendBtn) sendBtn.addEventListener("click", sendFromBubble);
-  if(input) input.addEventListener("keydown",(e)=>{ if(e.key==="Enter") sendFromBubble(); });
 
   // reset al volver de WhatsApp
   function resetAfterReturn(){
