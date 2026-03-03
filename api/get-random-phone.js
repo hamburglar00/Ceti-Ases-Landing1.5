@@ -8,7 +8,7 @@
  **************************************************************/
 
 const CONFIG = {
-  AGENCIES: [{ id: 28, name: "Ceti" }],
+  AGENCIES: [{ id: 17, name: "Ceti" }],
   BRAND_NAME: "",
 
   // Si querés minimizar fallback, ponelo en false:
