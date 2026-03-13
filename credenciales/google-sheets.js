@@ -1,3 +1,3 @@
 export const CONFIG_SHEETS = {
-  GOOGLE_SHEETS_URL: 'https://script.google.com/macros/s/AKfycbw7sPr_9_ZBv_SmN0G3d6ySNogWFXBrZ6-V8dT_b_RRnbVonqlVAXpW3WKjPBg46eyu/exec'
+  GOOGLE_SHEETS_URL: 'https://script.google.com/macros/s/AKfycbwsI-u6jwiP_x_IO_smGQV5PqbX9-9mujL1hfX7Vkf3_tPnQplcBRco8GTcAbqwL3_v/exec'
 };
